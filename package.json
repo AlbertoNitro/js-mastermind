@@ -1,0 +1,12 @@
+{
+  "name": "js-mastermind",
+  "version": "1.0.0",
+  "description": "Mastermind en ECMAScript 6",
+  "main": "./mastermind/Mastermind.js",
+  "scripts": {
+    "start": "node ./mastermind/Mastermind.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC"
+}
