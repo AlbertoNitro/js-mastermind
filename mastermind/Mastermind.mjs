@@ -85,4 +85,7 @@ export class Mastermind extends WithConsoleModel {
 }
 
 Mastermind.MAX_LONG = 10;
-Mastermind.main(null);
+
+
+let name = readline.question("What is your name?");
+//Mastermind.main(null);

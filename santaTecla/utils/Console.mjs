@@ -1,3 +1,5 @@
+import * as readline from "readline-sync"
+
 export class Console {
     constructor() {
         this.bufferedReader = java.lang.System.in;

@@ -4,7 +4,7 @@
   "description": "Mastermind in ECMAScript6",
   "main": "mastermind/Mastermind.mjs",
   "scripts": {
-    "start": "npm --experimental-modules mastermind/Mastermind.js",
+    "start": "node --experimental-modules mastermind/Mastermind.mjs",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "engines": {
@@ -12,5 +12,8 @@
     "npm": ">=6.0.0"
   },
   "author": "",
-  "license": "ISC"
+  "license": "ISC",
+  "dependencies": {
+    "readline-sync": "^1.4.10"
+  }
 }
