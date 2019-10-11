@@ -13,6 +13,16 @@ export class SecretCombination extends Combination {
             this.colors[i] = Color.getInstanceInt(random.nextInt(Color.length()));
         }
         this.shuffleArray(this.colors);
+        /**
+         * for(Color color: Color.values()) {
+				this.colors.add(color);
+			}
+         Random random = new Random(System.currentTimeMillis());
+         for (int i = 0; i < Color.length() - Combination.getWidth(); i++) {
+				this.colors.remove(random.nextInt(this.colors.size()));
+			}
+         Collections.shuffle(this.colors);
+         */
     }
 
     getResult(proposedCombination) {

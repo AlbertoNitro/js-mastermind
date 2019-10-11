@@ -10,10 +10,8 @@ export class Result extends WithConsoleModel {
         this.whites = 0;
         if (!(blacks >= 0))
             throw new Error("Assertion error: [assert blacks >= 0;]");
-        ;
         if (!(whites >= 0))
             throw new Error("Assertion error: [assert whites >= 0;]");
-        ;
         this.blacks = blacks;
         this.whites = whites;
     }

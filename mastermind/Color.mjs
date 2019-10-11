@@ -38,7 +38,6 @@ export class Color {
     static getInstanceInt(code) {
         if (!(0 <= code && code < Color.length()))
             throw new Error("Assertion error: [assert 0 <= code && code < Color.length();]");
-        ;
         return new Color(function () {
             let result = [];
             for (let colorType in ColorType) {
@@ -56,7 +55,7 @@ export class Color {
             let colorType = colorTypes[i];
             let color = new Color(colorType);
             let initial = color.getInitial();
-            if ((c => c.charCodeAt == null ? c : c.charCodeAt(0))(initial) == (c => c.charCodeAt == null ? c : c.charCodeAt(0))(character)) {
+            if ((c => c.charCodeAt == null ? c : c.charCodeAt(0))(initial) === (c => c.charCodeAt == null ? c : c.charCodeAt(0))(character)) {
                 return color;
             }
         }

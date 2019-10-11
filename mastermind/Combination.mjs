@@ -12,7 +12,7 @@ export class Combination extends WithConsoleModel {
             return a;
         })(Combination.WIDTH);
     }
-    
+
     static getWidth() {
         return Combination.WIDTH;
     }
