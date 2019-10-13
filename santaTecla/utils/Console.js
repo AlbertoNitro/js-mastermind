@@ -1,6 +1,7 @@
-import * as readlineSync from "readline-sync"
+"use strict";
+const readlineSync = require('readline-sync');
 
-export class Console {
+class Console {
 
     readStringWithTitle(title) {
         let input = null;
@@ -69,3 +70,5 @@ export class Console {
         console.info("FORMAT ERROR! Enter a " + format + " formatted value.");
     }
 }
+
+exports.Console = Console;

@@ -1,6 +1,7 @@
-import {WithConsoleModel} from '../santaTecla/utils/WithConsoleModel';
+"use strict";
+const WithConsoleModel = require("../santaTecla/utils/WithConsoleModel");
 
-export class Combination extends WithConsoleModel {
+class Combination extends WithConsoleModel.WithConsoleModel {
     constructor() {
         super();
         if (this.colors === undefined)
@@ -19,3 +20,4 @@ export class Combination extends WithConsoleModel {
 }
 
 Combination.WIDTH = 4;
+exports.Combination = Combination;

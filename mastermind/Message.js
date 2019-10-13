@@ -1,9 +1,10 @@
-import {Console} from '../santaTecla/utils/Console';
-import * as sprintf from "sprintf-js";
+"use strict";
+const sprintf = require('sprintf-js').sprintf;
+const Console = require("../santaTecla/utils/Console");
 
-export class Message {
+class Message {
     constructor(messageType) {
-        this.console = new Console();
+        this.console = new Console.Console();
         switch ((messageType)) {
             case "ATTEMPTS":
                 this.message = "%d attempt(s): ";
@@ -47,16 +48,17 @@ export class Message {
     writelnResult(blacks, whites) {
         this.console.writelnString(sprintf(this.message, blacks, whites));
     }
-
 }
 
 Message.MessageTypes = Object.freeze({
-    ATTEMPTS:   Symbol("ATTEMPTS"),
-    SECRET:  Symbol("SECRET"),
-    RESUME: Symbol("RESUME"),
-    RESULT: Symbol("RESULT"),
-    PROPOSED_COMBINATION: Symbol("PROPOSED_COMBINATION"),
-    TITLE: Symbol("TITLE"),
-    WINNER: Symbol("WINNER"),
-    LOOSER: Symbol("LOOSER")
+    ATTEMPTS: "ATTEMPTS",
+    SECRET: "SECRET",
+    RESUME: "RESUME",
+    RESULT: "RESULT",
+    PROPOSED_COMBINATION: "PROPOSED_COMBINATION",
+    TITLE: "TITLE",
+    WINNER: "WINNER",
+    LOOSER: "LOOSER"
 });
+
+exports.Message = Message;

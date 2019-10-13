@@ -1,10 +1,10 @@
-import {Combination} from './Combination';
-import {Color} from './Color';
-import {Error} from './Error';
-import {Message} from './Message';
-import {ErrorType} from './ErrorType';
+"use strict";
+const Combination = require("./Combination");
+const Color = require("./Color");
+const Error = require("./Error");
+const Message = require("./Message");
 
-export class ProposedCombination extends Combination {
+class ProposedCombination extends Combination.Combination {
     write() {
         for (let i = 0; i < this.colors.length; i++) {
             let color = this.colors[i];
@@ -16,21 +16,21 @@ export class ProposedCombination extends Combination {
         let error;
         do {
             error = null;
-            new Message(Message.MessageTypes.PROPOSED_COMBINATION).write();
+            new Message.Message(Message.Message.MessageTypes.PROPOSED_COMBINATION).write();
             let characters = this.console.readString();
-            if (characters.length !== Combination.getWidth()) {
-                error = new Error(ErrorType.WRONG_LENGTH);
+            if (characters.length !== Combination.Combination.getWidth()) {
+                error = new Error.Error(Error.Error.ErrorTypes.WRONG_LENGTH);
             } else {
                 for (let i = 0; i < characters.length; i++) {
-                    let color = Color.getInstanceChar(characters.charAt(i));
+                    let color = Color.Color.getInstanceChar(characters.charAt(i));
                     if (color == null) {
-                        error = new Error(ErrorType.WRONG_CHARACTERS);
+                        error = new Error.Error(Error.Error.ErrorTypes.WRONG_CHARACTERS);
                     } else {
                         let j = 0;
                         let done = false;
                         while ((j < this.colors.length && !done)) {
-                            if (this.colors[j] === color) {
-                                error = new Error(ErrorType.DUPLICATED);
+                            if (this.colors[j].getInitial() === color.getInitial()) {
+                                error = new Error.Error(Error.Error.ErrorTypes.DUPLICATED);
                                 done = true;
                             }
                             j++;
@@ -63,3 +63,5 @@ export class ProposedCombination extends Combination {
         return false;
     }
 }
+
+exports.ProposedCombination = ProposedCombination;

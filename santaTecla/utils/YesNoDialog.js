@@ -1,6 +1,7 @@
-import {WithConsoleModel} from './WithConsoleModel';
+"use strict";
+const WithConsoleModel = require("./WithConsoleModel");
 
-export class YesNoDialog extends WithConsoleModel {
+class YesNoDialog extends WithConsoleModel.WithConsoleModel {
     static QUESTION_$LI$() {
         if (YesNoDialog.QUESTION == null)
             YesNoDialog.QUESTION = "? (" + YesNoDialog.AFIRMATIVE + "/" + YesNoDialog.NEGATIVE + "): ";
@@ -41,3 +42,4 @@ YesNoDialog.AFIRMATIVE = 'y';
 YesNoDialog.NEGATIVE = 'n';
 YesNoDialog.MESSAGE_$LI$();
 YesNoDialog.QUESTION_$LI$();
+exports.YesNoDialog = YesNoDialog;

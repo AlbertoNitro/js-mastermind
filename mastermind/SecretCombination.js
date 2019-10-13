@@ -1,9 +1,10 @@
-import {Combination} from './Combination';
-import {Color} from './Color';
-import {Result} from './Result';
-import {Message} from './Message';
+"use strict";
+const Combination = require("./Combination");
+const Color = require("./Color");
+const Result = require("./Result");
+const Message = require("./Message");
 
-export class SecretCombination extends Combination {
+class SecretCombination extends Combination.Combination {
     constructor() {
         super();
         for (let i = 0; i < this.colors.length; i++) {
@@ -11,8 +12,9 @@ export class SecretCombination extends Combination {
             let isRepeated;
             do {
                 isRepeated  = false;
-                let indexRandom = this.getRandomInt(0, this.colors.length);
-                color = Color.getInstanceInt(indexRandom);
+                let indexRandom = this.getRandomInt(0, Color.Color.ColorTypes.length);
+                color = Color.Color.getInstanceInt(indexRandom);
+                console.log(color.toString());
                 for (let j = 0; j < this.colors.length; j++) {
                     if (this.colors[j] === color) {
                         isRepeated = true;
@@ -38,12 +40,12 @@ export class SecretCombination extends Combination {
                 whites++;
             }
         }
-        return new Result(blacks, whites - blacks);
+        return new Result.Result(blacks, whites - blacks);
     }
 
     writeln() {
-        for (let i = 0; i < Combination.getWidth(); i++) {
-            new Message(Message.MessageTypes.SECRET).write();
+        for (let i = 0; i < Combination.Combination.getWidth(); i++) {
+            new Message.Message(Message.Message.MessageTypes.SECRET).write();
         }
         this.console.writeln();
     }
@@ -61,3 +63,5 @@ export class SecretCombination extends Combination {
         return Math.floor(Math.random() * (max - min)) + min;
     }
 }
+
+exports.SecretCombination = SecretCombination;

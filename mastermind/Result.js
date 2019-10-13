@@ -1,8 +1,9 @@
-import {WithConsoleModel} from '../santaTecla/utils/WithConsoleModel';
-import {Combination} from './Combination';
-import {Message} from './Message';
+"use strict";
+const WithConsoleModel = require("../santaTecla/utils/WithConsoleModel");
+const Combination = require("./Combination");
+const Message = require("./Message");
 
-export class Result extends WithConsoleModel {
+class Result extends WithConsoleModel.WithConsoleModel {
     constructor(blacks, whites) {
         super();
         this.blacks = 0;
@@ -16,10 +17,12 @@ export class Result extends WithConsoleModel {
     }
 
     isWinner() {
-        return this.blacks === Combination.getWidth();
+        return this.blacks === Combination.Combination.getWidth();
     }
 
     writeln() {
-        new Message(Message.MessageTypes.RESULT).writelnResult(this.blacks, this.whites);
+        new Message.Message(Message.Message.MessageTypes.RESULT).writelnResult(this.blacks, this.whites);
     }
 }
+
+exports.Result = Result;

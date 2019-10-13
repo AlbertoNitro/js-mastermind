@@ -1,6 +1,7 @@
-import {Console} from '../santaTecla/utils/Console';
+"use strict";
+const Console = require("../santaTecla/utils/Console");
 
-export class Color {
+class Color {
     constructor(colorType) {
         this.colorType = colorType;
     }
@@ -26,8 +27,8 @@ export class Color {
             throw new Error(`Assertion error: [character(${character}) is not an initial validity for defined colors].`);
         }
         let color;
-        for (let colorType in Color.ColorTypes) {
-            color = new Color(colorType);
+        for (let i = 0; i < Color.ColorTypes.length; i++) {
+            color = new Color(Color.ColorTypes[i]);
             if ( color.getInitial() === character) {
                 return color;
             }
@@ -39,14 +40,14 @@ export class Color {
     }
 
     write() {
-        new Console().writeChar(this.getInitial());
+        new Console.Console().writeChar(this.getInitial());
     }
 
     getInitial() {
-        return this.colorType.substring(0, 1);
+        return this.colorType.substring(0, 1).toLowerCase();
     }
 }
 
 Color.ColorTypes = ["RED", "BLUE", "YELLOW", "GREEN", "ORANGE", "PURPLE"];
-
+exports.Color = Color;
 

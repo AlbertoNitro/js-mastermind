@@ -2,9 +2,9 @@
   "name": "js-mastermind",
   "version": "1.0.0",
   "description": "Mastermind in ECMAScript6",
-  "main": "mastermind/Mastermind.mjs",
+  "main": "mastermind/Mastermind.js",
   "scripts": {
-    "start": "node --experimental-modules mastermind/Mastermind.mjs",
+    "start": "node mastermind/Mastermind.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "engines": {
