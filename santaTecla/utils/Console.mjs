@@ -1,17 +1,13 @@
-import * as readline from "readline-sync"
+import * as readlineSync from "readline-sync"
 
 export class Console {
-    constructor() {
-        this.bufferedReader = java.lang.System.in;
-    }
 
     readStringWithTitle(title) {
         let input = null;
         let ok = false;
         do {
-            this.writeString(title);
             try {
-                input = this.bufferedReader.readLine();
+                input = readlineSync.question(title);
                 ok = true;
             } catch (exception) {
                 this.writeError("characte string");
@@ -29,7 +25,7 @@ export class Console {
         let ok = false;
         do {
             try {
-                input = parseInt(this.readStringWithTitle(title));
+                input = readlineSync.questionInt(title);
                 ok = true;
             } catch (ex) {
                 this.writeError("integer");
