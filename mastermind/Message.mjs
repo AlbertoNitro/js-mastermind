@@ -1,5 +1,6 @@
 import {Console} from '../santaTecla/utils/Console';
 import {MessageType} from './MessageType';
+import * as sprintf from "sprintf-js";
 
 export class Message {
     constructor(messageType) {
@@ -45,10 +46,11 @@ export class Message {
     }
 
     writelnAttempts(attempts) {
-        this.console.writelnString(javaemul.internal.StringHelper.format(this.message, attempts));
+        this.console.writelnString(sprintf(this.message, attempts));
     }
 
     writelnResult(blacks, whites) {
-        this.console.writelnString(javaemul.internal.StringHelper.format(this.message, blacks, whites));
+        this.console.writelnString(sprintf(this.message, blacks, whites));
     }
+
 }

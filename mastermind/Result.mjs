@@ -24,5 +24,3 @@ export class Result extends WithConsoleModel {
         new Message(MessageType.RESULT).writelnResult(this.blacks, this.whites);
     }
 }
-
-Result["__class"] = "mastermind.Result";

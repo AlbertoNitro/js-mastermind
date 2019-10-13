@@ -16,11 +16,11 @@ export class YesNoDialog extends WithConsoleModel {
     ;
 
     static isAfirmative(answer) {
-        return (c => c.charCodeAt == null ? c : c.charCodeAt(0))(/* toLowerCase */ answer.toLowerCase()) == (c => c.charCodeAt == null ? c : c.charCodeAt(0))(YesNoDialog.AFIRMATIVE);
+        return (c => c.charCodeAt == null ? c : c.charCodeAt(0))(/* toLowerCase */ answer.toLowerCase()) === (c => c.charCodeAt == null ? c : c.charCodeAt(0))(YesNoDialog.AFIRMATIVE);
     }
 
     static isNegative(answer) {
-        return (c => c.charCodeAt == null ? c : c.charCodeAt(0))(/* toLowerCase */ answer.toLowerCase()) == (c => c.charCodeAt == null ? c : c.charCodeAt(0))(YesNoDialog.NEGATIVE);
+        return (c => c.charCodeAt == null ? c : c.charCodeAt(0))(/* toLowerCase */ answer.toLowerCase()) === (c => c.charCodeAt == null ? c : c.charCodeAt(0))(YesNoDialog.NEGATIVE);
     }
 
     read() {

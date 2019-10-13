@@ -37,7 +37,7 @@ export class Color {
 
     static getInstanceInt(code) {
         if (!(0 <= code && code < Color.length()))
-            throw new Error("Assertion error: [assert 0 <= code && code < Color.length();]");
+            throw new Error(`Assertion error: [assert 0 <= code(${code}) && code < Color.length()(${Color.length()})]`);
         return new Color(function () {
             let result = [];
             for (let colorType in ColorType) {

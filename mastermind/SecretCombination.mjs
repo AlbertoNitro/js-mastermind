@@ -7,22 +7,23 @@ import {MessageType} from './MessageType';
 export class SecretCombination extends Combination {
     constructor() {
         super();
-        let random;
         for (let i = 0; i < this.colors.length; i++) {
-            random = new Random(/* currentTimeMillis */Date.now());
-            this.colors[i] = Color.getInstanceInt(random.nextInt(Color.length()));
+            let color;
+            let isRepeated;
+            do {
+                isRepeated  = false;
+                let indexRandom = this.getRandomInt(0, this.colors.length);
+                console.log(indexRandom);
+                color = Color.getInstanceInt(indexRandom);
+                for (let j = 0; j < this.colors.length; j++) {
+                    if (this.colors[j] === color) {
+                        isRepeated = true;
+                    }
+                }
+            } while (isRepeated);
+            this.colors[i] = color;
         }
         this.shuffleArray(this.colors);
-        /**
-         * for(Color color: Color.values()) {
-				this.colors.add(color);
-			}
-         Random random = new Random(System.currentTimeMillis());
-         for (int i = 0; i < Color.length() - Combination.getWidth(); i++) {
-				this.colors.remove(random.nextInt(this.colors.size()));
-			}
-         Collections.shuffle(this.colors);
-         */
     }
 
     getResult(proposedCombination) {
@@ -50,12 +51,15 @@ export class SecretCombination extends Combination {
     }
 
     shuffleArray(array) {
-        let random = new Random(/* currentTimeMillis */ Date.now());
         for (let i = array.length - 1; i > 0; i--) {
-            let index = random.nextInt(i + 1);
+            let index = this.getRandomInt(0, array.length);
             let color = array[index];
             array[index] = array[i];
             array[i] = color;
         }
+    }
+
+    getRandomInt(min, max) {
+        return Math.floor(Math.random() * (max - min)) + min;
     }
 }
