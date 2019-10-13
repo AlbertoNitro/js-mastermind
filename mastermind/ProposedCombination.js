@@ -29,7 +29,7 @@ class ProposedCombination extends Combination.Combination {
                         let j = 0;
                         let done = false;
                         while ((j < this.colors.length && !done)) {
-                            if (this.colors[j].getInitial() === color.getInitial()) {
+                            if (this.colors[j] != null && this.colors[j].getInitial() === color.getInitial()) {
                                 error = new Error.Error(Error.Error.ErrorTypes.DUPLICATED);
                                 done = true;
                             }
