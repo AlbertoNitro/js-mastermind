@@ -2,7 +2,6 @@ import {Combination} from './Combination';
 import {Color} from './Color';
 import {Result} from './Result';
 import {Message} from './Message';
-import {MessageType} from './MessageType';
 
 export class SecretCombination extends Combination {
     constructor() {
@@ -13,7 +12,6 @@ export class SecretCombination extends Combination {
             do {
                 isRepeated  = false;
                 let indexRandom = this.getRandomInt(0, this.colors.length);
-                console.log(indexRandom);
                 color = Color.getInstanceInt(indexRandom);
                 for (let j = 0; j < this.colors.length; j++) {
                     if (this.colors[j] === color) {
@@ -45,7 +43,7 @@ export class SecretCombination extends Combination {
 
     writeln() {
         for (let i = 0; i < Combination.getWidth(); i++) {
-            new Message(MessageType.SECRET).write();
+            new Message(Message.MessageTypes.SECRET).write();
         }
         this.console.writeln();
     }

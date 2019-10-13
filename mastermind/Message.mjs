@@ -1,37 +1,32 @@
 import {Console} from '../santaTecla/utils/Console';
-import {MessageType} from './MessageType';
 import * as sprintf from "sprintf-js";
 
 export class Message {
     constructor(messageType) {
-        if (this.message === undefined)
-            this.message = null;
-        if (this.console === undefined)
-            this.console = null;
         this.console = new Console();
         switch ((messageType)) {
-            case MessageType.ATTEMPTS:
+            case "ATTEMPTS":
                 this.message = "%d attempt(s): ";
                 break;
-            case MessageType.SECRET:
+            case "SECRET":
                 this.message = "*";
                 break;
-            case MessageType.RESUME:
+            case "RESUME":
                 this.message = "Do you want to continue";
                 break;
-            case MessageType.RESULT:
+            case "RESULT":
                 this.message = " --> %d blacks and %d whites";
                 break;
-            case MessageType.PROPOSED_COMBINATION:
+            case "PROPOSED_COMBINATION":
                 this.message = "Propose a combination: ";
                 break;
-            case MessageType.TITLE:
+            case "TITLE":
                 this.message = "----- MASTERMIND -----";
                 break;
-            case MessageType.WINNER:
+            case "WINNER":
                 this.message = "You\'ve won!!! ;-)";
                 break;
-            case MessageType.LOOSER:
+            case "LOOSER":
                 this.message = "You\'ve lost!!! :-(";
                 break;
         }
@@ -54,3 +49,14 @@ export class Message {
     }
 
 }
+
+Message.MessageTypes = Object.freeze({
+    ATTEMPTS:   Symbol("ATTEMPTS"),
+    SECRET:  Symbol("SECRET"),
+    RESUME: Symbol("RESUME"),
+    RESULT: Symbol("RESULT"),
+    PROPOSED_COMBINATION: Symbol("PROPOSED_COMBINATION"),
+    TITLE: Symbol("TITLE"),
+    WINNER: Symbol("WINNER"),
+    LOOSER: Symbol("LOOSER")
+});

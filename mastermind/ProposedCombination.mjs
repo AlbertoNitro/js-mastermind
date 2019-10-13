@@ -2,7 +2,6 @@ import {Combination} from './Combination';
 import {Color} from './Color';
 import {Error} from './Error';
 import {Message} from './Message';
-import {MessageType} from './MessageType';
 import {ErrorType} from './ErrorType';
 
 export class ProposedCombination extends Combination {
@@ -17,7 +16,7 @@ export class ProposedCombination extends Combination {
         let error;
         do {
             error = null;
-            new Message(MessageType.PROPOSED_COMBINATION).write();
+            new Message(Message.MessageTypes.PROPOSED_COMBINATION).write();
             let characters = this.console.readString();
             if (characters.length !== Combination.getWidth()) {
                 error = new Error(ErrorType.WRONG_LENGTH);
