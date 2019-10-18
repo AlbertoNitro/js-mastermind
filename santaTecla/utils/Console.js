@@ -4,7 +4,7 @@ const readlineSync = require('readline-sync');
 class Console {
 
     readStringWithTitle(title) {
-        let input = null;
+        let input;
         let ok = false;
         do {
             try {
@@ -22,7 +22,7 @@ class Console {
     }
 
     readInt(title) {
-        let input = 0;
+        let input;
         let ok = false;
         do {
             try {
@@ -36,7 +36,7 @@ class Console {
     }
 
     readChar(title) {
-        let charValue = ' ';
+        let charValue;
         let ok = false;
         do {
             let input = this.readStringWithTitle(title);

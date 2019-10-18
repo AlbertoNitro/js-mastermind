@@ -1,33 +1,33 @@
 "use strict";
 const sprintf = require('sprintf-js').sprintf;
-const Console = require("../santaTecla/utils/Console");
+const Console = require("../santaTecla/utils/Console").Console;
 
 class Message {
     constructor(messageType) {
-        this.console = new Console.Console();
+        this.console = new Console();
         switch ((messageType)) {
-            case "ATTEMPTS":
+            case Message.MessageTypes.ATTEMPTS:
                 this.message = "%d attempt(s): ";
                 break;
-            case "SECRET":
+            case Message.MessageTypes.SECRET:
                 this.message = "*";
                 break;
-            case "RESUME":
+            case Message.MessageTypes.RESUME:
                 this.message = "Do you want to continue";
                 break;
-            case "RESULT":
+            case Message.MessageTypes.RESULT:
                 this.message = " --> %d blacks and %d whites";
                 break;
-            case "PROPOSED_COMBINATION":
+            case Message.MessageTypes.PROPOSED_COMBINATION:
                 this.message = "Propose a combination: ";
                 break;
-            case "TITLE":
+            case Message.MessageTypes.TITLE:
                 this.message = "----- MASTERMIND -----";
                 break;
-            case "WINNER":
+            case Message.MessageTypes.WINNER:
                 this.message = "You\'ve won!!! ;-)";
                 break;
-            case "LOOSER":
+            case Message.MessageTypes.LOOSER:
                 this.message = "You\'ve lost!!! :-(";
                 break;
         }
@@ -60,5 +60,4 @@ Message.MessageTypes = Object.freeze({
     WINNER: "WINNER",
     LOOSER: "LOOSER"
 });
-
 exports.Message = Message;

@@ -1,29 +1,20 @@
 "use strict";
-const Combination = require("./Combination");
-const Color = require("./Color");
-const Result = require("./Result");
-const Message = require("./Message");
+const Combination = require("./Combination").Combination;
+const Color = require("./Color").Color;
+const Result = require("./Result").Result;
+const Message = require("./Message").Message;
 
-class SecretCombination extends Combination.Combination {
+class SecretCombination extends Combination {
     constructor() {
         super();
+        let indexRandom;
         for (let i = 0; i < this.colors.length; i++) {
-            let color;
-            let isRepeated;
-            do {
-                isRepeated  = false;
-                let indexRandom = this.getRandomInt(0, Color.Color.ColorTypes.length);
-                color = Color.Color.getInstanceInt(indexRandom);
-                console.log(color.toString());
-                for (let j = 0; j < this.colors.length; j++) {
-                    if (this.colors[j] === color) {
-                        isRepeated = true;
-                    }
-                }
-            } while (isRepeated);
-            this.colors[i] = color;
+            indexRandom = SecretCombination.getRandomInt(0, Color.ColorTypes.length);
+            this.colors[i] = Color.getInstanceInt(indexRandom);
         }
-        this.shuffleArray(this.colors);
+        SecretCombination.shuffleArray(this.colors);
+        console.log("La combinacion secreta generada es: ");
+        this.writeln()
     }
 
     getResult(proposedCombination) {
@@ -40,26 +31,26 @@ class SecretCombination extends Combination.Combination {
                 whites++;
             }
         }
-        return new Result.Result(blacks, whites - blacks);
+        return new Result(blacks, whites - blacks);
     }
 
     writeln() {
-        for (let i = 0; i < Combination.Combination.getWidth(); i++) {
-            new Message.Message(Message.Message.MessageTypes.SECRET).write();
+        for (let i = 0; i < Combination.getWidth(); i++) {
+            new Message(Message.MessageTypes.SECRET).write();
         }
         this.console.writeln();
     }
 
-    shuffleArray(array) {
+    static shuffleArray(array) {
         for (let i = array.length - 1; i > 0; i--) {
-            let index = this.getRandomInt(0, array.length);
+            let index = SecretCombination.getRandomInt(0, array.length);
             let color = array[index];
             array[index] = array[i];
             array[i] = color;
         }
     }
 
-    getRandomInt(min, max) {
+    static getRandomInt(min, max) {
         return Math.floor(Math.random() * (max - min)) + min;
     }
 }

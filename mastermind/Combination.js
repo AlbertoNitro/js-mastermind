@@ -1,17 +1,10 @@
 "use strict";
-const WithConsoleModel = require("../santaTecla/utils/WithConsoleModel");
+const WithConsoleModel = require("../santaTecla/utils/WithConsoleModel").WithConsoleModel;
 
-class Combination extends WithConsoleModel.WithConsoleModel {
+class Combination extends WithConsoleModel {
     constructor() {
         super();
-        if (this.colors === undefined)
-            this.colors = null;
-        this.colors = (s => {
-            let a = [];
-            while (s-- > 0)
-                a.push(null);
-            return a;
-        })(Combination.WIDTH);
+        this.colors = new Array(Combination.WIDTH);
     }
 
     static getWidth() {

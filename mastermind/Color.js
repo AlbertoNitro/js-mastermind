@@ -1,5 +1,5 @@
 "use strict";
-const Console = require("../santaTecla/utils/Console");
+const Console = require("../santaTecla/utils/Console").Console;
 
 class Color {
     constructor(colorType) {
@@ -17,22 +17,30 @@ class Color {
     }
 
     static getInstanceInt(code) {
-        if (!(0 <= code && code < Color.length()))
+        if (!Color.isCodeValid(code))
             throw new Error(`Assertion error: [assert 0 <= code(${code}) && code < Color.length()(${Color.length()})].`);
         return new Color(Color.ColorTypes[code]);
     }
 
     static getInstanceChar(character) {
-        if (!this.allInitials().includes(character)) {
-            throw new Error(`Assertion error: [character(${character}) is not an initial validity for defined colors].`);
+        if (!Color.isInitialValid(character)) {
+            throw new Error(`Assertion error: [assert character(${character}) is not an initial validity for defined colors].`);
         }
         let color;
         for (let i = 0; i < Color.ColorTypes.length; i++) {
             color = new Color(Color.ColorTypes[i]);
-            if ( color.getInitial() === character) {
+            if (color.getInitial() === character) {
                 return color;
             }
         }
+    }
+
+    static isCodeValid(code) {
+        return 0 <= code && code < Color.length();
+    }
+
+    static isInitialValid(character) {
+        return Color.allInitials().includes(character);
     }
 
     static length() {
@@ -40,7 +48,7 @@ class Color {
     }
 
     write() {
-        new Console.Console().writeChar(this.getInitial());
+        new Console().writeChar(this.getInitial());
     }
 
     getInitial() {
@@ -50,4 +58,3 @@ class Color {
 
 Color.ColorTypes = ["RED", "BLUE", "YELLOW", "GREEN", "ORANGE", "PURPLE"];
 exports.Color = Color;
-

@@ -1,11 +1,9 @@
 "use strict";
-const Console = require("./Console");
+const Console = require("./Console").Console;
 
 class WithConsoleModel {
     constructor() {
-        if (this.console === undefined)
-            this.console = null;
-        this.console = new Console.Console();
+        this.console = new Console();
     }
 }
 

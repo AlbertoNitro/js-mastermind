@@ -1,53 +1,35 @@
 "use strict";
-const WithConsoleModel = require("../santaTecla/utils/WithConsoleModel");
-const YesNoDialog = require("../santaTecla/utils/YesNoDialog");
-const SecretCombination = require("./SecretCombination");
-const ProposedCombination = require("./ProposedCombination");
-const Message = require("./Message");
+const WithConsoleModel = require("../santaTecla/utils/WithConsoleModel").WithConsoleModel;
+const YesNoDialog = require("../santaTecla/utils/YesNoDialog").YesNoDialog;
+const SecretCombination = require("./SecretCombination").SecretCombination;
+const ProposedCombination = require("./ProposedCombination").ProposedCombination;
+const Message = require("./Message").Message;
 
-class Mastermind extends WithConsoleModel.WithConsoleModel {
+class Mastermind extends WithConsoleModel {
     constructor() {
         super();
-        if (this.secretCombination === undefined)
-            this.secretCombination = null;
-        if (this.proposedCombinations === undefined)
-            this.proposedCombinations = null;
-        if (this.results === undefined)
-            this.results = null;
-        if (this.attempts === undefined)
-            this.attempts = 0;
+        this.secretCombination = null;
+        this.proposedCombinations = null;
+        this.results = null;
+        this.attempts = 0;
         this.clear();
     }
 
-    static main(args) {
-        new Mastermind().play();
-    }
-
     clear() {
-        this.secretCombination = new SecretCombination.SecretCombination();
-        this.proposedCombinations = (s => {
-            let a = [];
-            while (s-- > 0)
-                a.push(null);
-            return a;
-        })(Mastermind.MAX_LONG);
-        this.results = (s => {
-            let a = [];
-            while (s-- > 0)
-                a.push(null);
-            return a;
-        })(Mastermind.MAX_LONG);
+        this.secretCombination = new SecretCombination();
+        this.proposedCombinations = new Array(Mastermind.MAX_LONG);
+        this.results = new Array(Mastermind.MAX_LONG);
         this.attempts = 0;
     }
 
     play() {
         let newGame;
         do {
-            new Message.Message(Message.Message.MessageTypes.TITLE).writeln();
+            new Message(Message.MessageTypes.TITLE).writeln();
             this.secretCombination.writeln();
             let finished = false;
             do {
-                let proposedCombination = new ProposedCombination.ProposedCombination();
+                let proposedCombination = new ProposedCombination();
                 proposedCombination.read();
                 let added = false;
                 let i = 0;
@@ -61,40 +43,30 @@ class Mastermind extends WithConsoleModel.WithConsoleModel {
                 }
                 this.attempts++;
                 this.console.writeln();
-                new Message.Message(Message.Message.MessageTypes.ATTEMPTS).writelnAttempts(this.attempts);
+                new Message(Message.MessageTypes.ATTEMPTS).writelnAttempts(this.attempts);
                 this.secretCombination.writeln();
                 for (i = 0; i < this.attempts; i++) {
                     this.proposedCombinations[i].write();
                     this.results[i].writeln();
                 }
                 if (this.results[this.attempts - 1].isWinner()) {
-                    new Message.Message(Message.MessageTypes.WINNER).writeln();
+                    new Message(Message.MessageTypes.WINNER).writeln();
                     finished = true;
                 } else if (this.attempts === Mastermind.MAX_LONG) {
-                    new Message.Message(Message.Message.MessageTypes.LOOSER).writeln();
+                    new Message(Message.MessageTypes.LOOSER).writeln();
                     finished = true;
                 }
             } while ((!finished));
-            new Message.Message(Message.Message.MessageTypes.RESUME).write();
-            newGame = new YesNoDialog.YesNoDialog().read();
+            new Message(Message.MessageTypes.RESUME).write();
+            newGame = new YesNoDialog().read();
             if (newGame) {
                 this.clear();
             }
         } while ((newGame));
     }
-
-    static async question() {
-        console.log ('Input some code:');
-        process.stdin.resume();
-        process.stdin.setEncoding('utf8');
-        await process.stdin.once('data', function (someCode) {
-            process.stdin.pause();
-            console.log ('Code: ' + someCode);
-        });
-    }
 }
-
 Mastermind.MAX_LONG = 10;
 exports.Mastermind = Mastermind;
-Message.Message.MessageTypes.TITLE.toString();
-Mastermind.main(null);
+
+Message.MessageTypes.TITLE.toString();
+new Mastermind().play();

@@ -1,10 +1,10 @@
 "use strict";
-const Combination = require("./Combination");
-const Color = require("./Color");
-const Error = require("./Error");
-const Message = require("./Message");
+const Combination = require("./Combination").Combination;
+const Color = require("./Color").Color;
+const Error = require("./Error").Error;
+const Message = require("./Message").Message;
 
-class ProposedCombination extends Combination.Combination {
+class ProposedCombination extends Combination {
     write() {
         for (let i = 0; i < this.colors.length; i++) {
             let color = this.colors[i];
@@ -15,22 +15,21 @@ class ProposedCombination extends Combination.Combination {
     read() {
         let error;
         do {
-            error = null;
-            new Message.Message(Message.Message.MessageTypes.PROPOSED_COMBINATION).write();
+            new Message(Message.MessageTypes.PROPOSED_COMBINATION).write();
             let characters = this.console.readString();
-            if (characters.length !== Combination.Combination.getWidth()) {
-                error = new Error.Error(Error.Error.ErrorTypes.WRONG_LENGTH);
+            if (characters.length !== Combination.getWidth()) {
+                error = new Error(Error.ErrorTypes.WRONG_LENGTH);
             } else {
                 for (let i = 0; i < characters.length; i++) {
-                    let color = Color.Color.getInstanceChar(characters.charAt(i));
+                    let color = Color.getInstanceChar(characters.charAt(i));
                     if (color == null) {
-                        error = new Error.Error(Error.Error.ErrorTypes.WRONG_CHARACTERS);
+                        error = new Error(Error.ErrorTypes.WRONG_CHARACTERS);
                     } else {
                         let j = 0;
                         let done = false;
-                        while ((j < this.colors.length && !done)) {
-                            if (this.colors[j] != null && this.colors[j].getInitial() === color.getInitial()) {
-                                error = new Error.Error(Error.Error.ErrorTypes.DUPLICATED);
+                        while (j < this.colors.length && !done) {
+                            if (this.colors[j] === color) {
+                                error = new Error(Error.ErrorTypes.DUPLICATED);
                                 done = true;
                             }
                             j++;
