@@ -5,7 +5,7 @@
   "main": "mastermind/Mastermind.js",
   "scripts": {
     "start": "node mastermind/Mastermind.js",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "jest --coverage"
   },
   "engines": {
     "node": ">=10.0.0",
@@ -14,6 +14,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "jest": "^24.9.0",
     "readline-sync": "^1.4.10",
     "sprintf-js": "^1.1.2"
   }
